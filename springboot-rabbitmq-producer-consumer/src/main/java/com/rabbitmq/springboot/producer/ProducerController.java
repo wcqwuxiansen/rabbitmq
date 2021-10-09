@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/producer")
 public class ProducerController {
@@ -15,6 +17,8 @@ public class ProducerController {
 
     @GetMapping("/sendMsg")
     public void sendMsg(){
-        rabbitTemplate.convertAndSend("springboot-directExchange","info","hell rabbitmq 消息队列",new CorrelationData("1"));
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        rabbitTemplate.convertAndSend("springboot-directExchange","info","hell rabbitmq 消息队列",correlationData);
+
     }
 }

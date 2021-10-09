@@ -23,6 +23,6 @@ public class RabbitmqConfig {
 
     @Bean
     public Binding bindQueueToExchange(@Qualifier("springbootQueue") Queue queue,@Qualifier("directExchange") DirectExchange directExchange){
-        return BindingBuilder.bind(queue).to(directExchange).with("infoo");
+        return BindingBuilder.bind(queue).to(directExchange).with("info");
     }
 }
