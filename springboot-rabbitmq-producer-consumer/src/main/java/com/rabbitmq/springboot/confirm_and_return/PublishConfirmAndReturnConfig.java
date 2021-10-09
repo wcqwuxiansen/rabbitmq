@@ -45,5 +45,10 @@ public class PublishConfirmAndReturnConfig implements RabbitTemplate.ConfirmCall
     @Override
     public void returnedMessage(ReturnedMessage returnedMessage) {
         System.out.println("消息未到达Queue回调此方法");
+        System.out.println(returnedMessage.getExchange());
+        System.out.println( returnedMessage.getReplyText());
+        System.out.println(returnedMessage.getReplyCode());
+        System.out.println(returnedMessage.getMessage());
+        System.out.println(returnedMessage.getRoutingKey());
     }
 }
