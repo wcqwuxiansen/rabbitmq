@@ -31,6 +31,7 @@ public class ConsumerService {
                 //手动ACK失败
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
             } catch (IOException e) {
+                //第一个参数为消息的索引，第二个参数为是否批量nack 第三个参数为是否重新放入队列   true表示业务队列还能接受该消息，设置false时，如果没有配置死信队列和死信交换机，消息就会被直接丢弃
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(),false,true);
             }
 
@@ -38,6 +39,11 @@ public class ConsumerService {
             System.out.println("收到消息==========================="+msg);
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false); //手动ACk的两个参数  第一个为消息的index，第二个表示是否批量确认消息
         }
+    }
 
+    @RabbitListener(queues = "dead-springboot-queue")
+    public void deadQueueReceiveMsg(Channel channel, String msg, Message message) throws IOException {
+        System.out.println(msg);
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
     }
 }
