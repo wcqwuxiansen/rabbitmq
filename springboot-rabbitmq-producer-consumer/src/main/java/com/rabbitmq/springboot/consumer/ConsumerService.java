@@ -16,7 +16,7 @@ public class ConsumerService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-   @RabbitListener(queues = {"springboot-queue"})
+   //@RabbitListener(queues = {"springboot-queue"})
     public void receiveMsg(Channel channel, String msg, Message message) throws IOException {
         Object messageId = message.getMessageProperties().getHeader("spring_returned_message_correlation");
         String messageIdStr = messageId.toString();
