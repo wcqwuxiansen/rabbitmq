@@ -24,6 +24,7 @@ public class RabbitmqConfig {
         Map map = new HashMap();
         map.put("x-dead-letter-exchange","springboot-deadDirectExchange"); //业务队列绑定死信交换机
         map.put("x-dead-letter-routing-key","dead-info");//业务队列绑定死信交换机的路由key
+        map.put("x-message-ttl",5000);//延时队列的属性   使用延时队列时   业务队列不能连接消费者  延时时间到  信息转到死信队列  由死信队列消费消息
         return new Queue("springboot-queue",true,false,false,map);
     }
 
