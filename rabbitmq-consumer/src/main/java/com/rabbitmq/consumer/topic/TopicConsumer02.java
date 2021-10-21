@@ -40,4 +40,8 @@ public class TopicConsumer02 {
         });
         System.in.read();
     }
+
+    public void test2(){
+        System.out.println("test2=================");
+    }
 }
